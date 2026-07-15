@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — VMAX Tea & Coffee Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+{% include '_header.html' %}
+
+<div class="shop-page">
+  <h1>Your Cart</h1>
+  <p class="shop-sub">Review your order before checking out.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  {% if lines %}
+    <div class="cart-lines">
+      {% for line in lines %}
+      <div class="cart-line">
+        <div>
+          <h4>{{ line.item.name }}</h4>
+          <div class="cl-price">₦{{ "{:,}".format(line.item.price) }} each</div>
+        </div>
+        <div class="cl-right">
+          <form class="cl-qty-form" action="{{ url_for('cart_update') }}" method="post">
+            <input type="hidden" name="item_id" value="{{ line.item.id }}">
+            <input type="number" name="quantity" value="{{ line.quantity }}" min="1" max="20" class="qty-input" aria-label="Quantity" onchange="this.form.submit()">
+          </form>
+          <div class="cl-line-total">₦{{ "{:,}".format(line.line_total) }}</div>
+          <form action="{{ url_for('cart_remove') }}" method="post">
+            <input type="hidden" name="item_id" value="{{ line.item.id }}">
+            <button type="submit" class="remove-btn">Remove</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span>₦{{ "{:,}".format(total) }}</span>
+    </div>
+
+    <a href="{{ url_for('checkout') }}" class="btn btn-primary" style="width:100%; justify-content:center;">Proceed to Checkout</a>
+  {% else %}
+    <div class="empty-cart">
+      Your cart is empty. <a href="{{ url_for('home') }}#menu">Browse the menu</a> to add something warm.
+    </div>
+  {% endif %}
+</div>
+
+{% include '_footer.html' %}
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VMAX Tea & Coffee Shop — Uyo's Cozy Corner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+{% include '_header.html' %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="container" style="padding-top:20px;">
+    {% for category, message in messages %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endwith %}
+
+<section class="hero">
+  <div>
+    <div class="hero-badge">⭐ {{ business.rating }} Rated · Enipaul Plaza, Uyo</div>
+    <h1>Good <em>tea</em>, great <em>coffee</em>,<br>and a seat that feels like home.</h1>
+    <p class="lede">VMAX is the little shop on the corner where your order is remembered, your cup is always full, and there's always room for one more friend at the table.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn btn-primary">See the Menu</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Enipaul+Plaza+253+Oron+Road+Uyo" target="_blank" rel="noopener" class="btn btn-secondary">Get Directions</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="cup-wrap">
+      <div class="blob"></div>
+      <svg viewBox="0 0 320 320" style="position:relative; z-index:1;">
+        <!-- steam -->
+        <g class="steam" transform="translate(115,40)">
+          <path d="M0 40 Q10 20 0 0" fill="none" stroke-width="4" stroke-linecap="round"/>
+          <path d="M25 40 Q35 20 25 0" fill="none" stroke-width="4" stroke-linecap="round"/>
+          <path d="M50 40 Q60 20 50 0" fill="none" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <!-- saucer -->
+        <ellipse cx="160" cy="250" rx="120" ry="16" fill="#2B1810" opacity="0.08"/>
+        <!-- cup body -->
+        <path d="M80 110 h140 l-10 100 a60 60 0 01-120 0 z" fill="#FFFDFA" stroke="#2B1810" stroke-width="4"/>
+        <!-- coffee -->
+        <path d="M92 118 h116 l-4 30 h-108 z" fill="#6B4226"/>
+        <!-- handle -->
+        <path d="M222 135 q45 5 40 45 q-5 40 -48 38" fill="none" stroke="#2B1810" stroke-width="8" stroke-linecap="round"/>
+        <!-- leaf accent -->
+        <path d="M60 210 q-25 -10 -20 -35 q28 -8 38 15 q5 15 -18 20 z" fill="#93B598" stroke="#2B1810" stroke-width="3"/>
+      </svg>
+      <svg class="beans" style="top:5%; left:-6%; width:46px;" viewBox="0 0 40 40">
+        <ellipse cx="20" cy="20" rx="18" ry="13" fill="#4A2F22" transform="rotate(-30 20 20)"/>
+        <path d="M20 8 Q24 20 20 32" stroke="#FBF2E4" stroke-width="2.5" fill="none" transform="rotate(-30 20 20)"/>
+      </svg>
+      <svg class="beans" style="bottom:2%; right:-8%; width:38px; animation-delay:1.5s;" viewBox="0 0 40 40">
+        <ellipse cx="20" cy="20" rx="18" ry="13" fill="#C9852B" transform="rotate(20 20 20)"/>
+        <path d="M20 8 Q24 20 20 32" stroke="#FBF2E4" stroke-width="2.5" fill="none" transform="rotate(20 20 20)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>☕ FRESH ROASTED DAILY</span><span>🍃 LOOSE-LEAF TEA</span><span>🥐 WARM PASTRIES</span><span>💬 FREE WIFI & GOOD VIBES</span><span>☕ FRESH ROASTED DAILY</span><span>🍃 LOOSE-LEAF TEA</span><span>🥐 WARM PASTRIES</span><span>💬 FREE WIFI & GOOD VIBES</span>
+  </div>
+</div>
+
+<!-- PLACEHOLDER: brand story below is sample copy, not confirmed with the owner. Swap once you have real details. -->
+<section class="about" id="about">
+  <div class="section-inner about-grid">
+    <div class="reveal">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="section-title">Started with two flasks and a folding table.</h2>
+      <p class="section-sub">VMAX began in 2021 as a small stall serving hot tea to students on their way to early classes. Today we're a full shop, but the goal hasn't changed: pour something warm, ask how your day is going, and mean it.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card reveal">
+        <div class="icon">☕</div>
+        <div><h3>Brewed to order</h3><p>Every cup is made fresh when you ask for it — no sitting on a hot plate for hours.</p></div>
+      </div>
+      <div class="about-card reveal">
+        <div class="icon">🍃</div>
+        <div><h3>Real ingredients</h3><p>Whole leaf tea, real milk, real honey. Nothing powdered pretending to be something else.</p></div>
+      </div>
+      <div class="about-card reveal">
+        <div class="icon">🏡</div>
+        <div><h3>Stay as long as you like</h3><p>Free wifi, comfy corners, and no one rushing you out the door.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACEHOLDER: items and prices are sample copy, not confirmed with the owner. Swap once you have the real menu. -->
+<section class="menu" id="menu">
+  <div class="section-inner">
+    <div class="menu-header reveal">
+      <span class="eyebrow">The Menu</span>
+      <h2 class="section-title">Pick your comfort.</h2>
+      <p class="section-sub">Coffee, tea, cakes, and a proper meal if you're staying a while. Search or filter to find what you're after.</p>
+    </div>
+
+    <div class="menu-search">
+      <input type="text" id="menu-search-input" placeholder="Search the menu…" aria-label="Search the menu">
+    </div>
+
+    <div class="tabs" id="menu-tabs">
+      {% for cat in categories %}
+      <button class="tab-btn{% if loop.first %} active{% endif %}" data-tab="{{ cat.id }}">{{ cat.icon }} {{ cat.label }}</button>
+      {% endfor %}
+    </div>
+
+    {% for cat in categories %}
+    <div class="menu-panel{% if loop.first %} active{% endif %}" data-panel="{{ cat.id }}">
+      <div class="menu-grid">
+        {% for item in menu_items if item.category == cat.id %}
+        <div class="menu-item" data-name="{{ item.name.lower() }}">
+          <div class="mi-left">
+            {% if item.popular %}<span class="popular-tag">Most loved</span>{% endif %}
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+            {% if item.dietary %}
+            <div class="dietary-tags">
+              {% for tag in item.dietary %}<span class="dietary-tag">{{ tag }}</span>{% endfor %}
+            </div>
+            {% endif %}
+            <form class="mi-add-form" action="{{ url_for('cart_add') }}" method="post">
+              <input type="hidden" name="item_id" value="{{ item.id }}">
+              <input type="number" name="quantity" value="1" min="1" max="20" class="qty-input" aria-label="Quantity">
+              <button type="submit" class="add-btn">Add to cart</button>
+            </form>
+          </div>
+          <div class="mi-price">₦{{ "{:,}".format(item.price) }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      <p class="no-results" hidden>No items match your search in this category.</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- PLACEHOLDER: loyalty program details are sample copy, not confirmed with the owner. -->
+<section class="why" id="why">
+  <div class="section-inner why-grid">
+    <div class="reveal">
+      <span class="eyebrow">Why VMAX</span>
+      <h2 class="section-title">Not just a cup. A pause in your day.</h2>
+      <p class="section-sub">We built VMAX around one idea: a good drink should come with a good moment. Here's what that looks like in practice.</p>
+      <ul class="why-list">
+        <li><span class="dot">✓</span> Baristas who learn your name — and your order — by your second visit.</li>
+        <li><span class="dot">✓</span> A loyalty card: 9 drinks in, the 10th is on us.</li>
+        <li><span class="dot">✓</span> Quiet corners for study, and a lively front for catching up with friends.</li>
+        <li><span class="dot">✓</span> Locally sourced beans and tea, roasted and blended in small batches.</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="stamp">
+        <div class="stamp-inner">
+          <strong>10th Cup<br>Free</strong>
+          <span>Loyalty Card</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACEHOLDER: gallery tiles below are styled placeholders, not real photos. Swap the CSS gradients for actual <img> tags once the owner shares photos. -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="reveal" style="max-width:600px;">
+      <span class="eyebrow">Gallery</span>
+      <h2 class="section-title">A peek inside.</h2>
+      <p class="section-sub">Real photos coming soon — for now, here's a sense of what you'll find.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-tile reveal" style="background:linear-gradient(135deg,var(--espresso),var(--espresso-soft));"><span>Interior</span></div>
+      <div class="gallery-tile reveal" style="background:linear-gradient(135deg,var(--amber),var(--amber-light));"><span>Latte Art</span></div>
+      <div class="gallery-tile reveal" style="background:linear-gradient(135deg,var(--sage),var(--sage-light));"><span>Tea Counter</span></div>
+      <div class="gallery-tile reveal" style="background:linear-gradient(135deg,var(--amber-light),var(--cream-deep));"><span>Pastry Case</span></div>
+      <div class="gallery-tile reveal" style="background:linear-gradient(135deg,var(--sage-light),var(--cream));"><span>Seating Corner</span></div>
+      <div class="gallery-tile reveal" style="background:linear-gradient(135deg,var(--espresso-soft),var(--amber));"><span>Regulars</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACEHOLDER: offers below are sample copy, not confirmed with the owner. -->
+<section class="offers" id="offers">
+  <div class="section-inner">
+    <div class="reveal" style="max-width:600px;">
+      <span class="eyebrow">Special Offers</span>
+      <h2 class="section-title">Little reasons to stop by.</h2>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card reveal"><div class="offer-icon">🌱</div><h4>Seasonal Drinks</h4><p>New flavors each season — ask what's on rotation.</p></div>
+      <div class="offer-card reveal"><div class="offer-icon">🎂</div><h4>Birthday Discount</h4><p>Show ID on your birthday, get 15% off your order.</p></div>
+      <div class="offer-card reveal"><div class="offer-icon">🕐</div><h4>Happy Hour</h4><p>4–6pm weekdays — buy one coffee, get the second half price.</p></div>
+      <div class="offer-card reveal"><div class="offer-icon">🍰</div><h4>Cake Promo</h4><p>Any slice + any drink, bundled at a discount.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACEHOLDER: event types below are sample copy, not confirmed with the owner. -->
+<section class="events" id="events">
+  <div class="section-inner">
+    <div class="reveal" style="max-width:600px;">
+      <span class="eyebrow">Events</span>
+      <h2 class="section-title">More than just coffee.</h2>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card reveal"><div class="offer-icon">🎵</div><h4>Live Music</h4><p>Acoustic sets on select evenings.</p></div>
+      <div class="offer-card reveal"><div class="offer-icon">☕</div><h4>Coffee Tasting</h4><p>Guided tastings through our roasts, by request.</p></div>
+      <div class="offer-card reveal"><div class="offer-icon">🎉</div><h4>Birthday Parties</h4><p>Book the corner for a small celebration.</p></div>
+      <div class="offer-card reveal"><div class="offer-icon">🤝</div><h4>Private Bookings</h4><p>Reserve the whole space for meetings or gatherings.</p></div>
+    </div>
+    <p class="events-note reveal">Interested in any of these? <a href="https://wa.me/{{ business.phone.lstrip('+') }}" target="_blank" rel="noopener">Message us on WhatsApp</a> to check availability.</p>
+  </div>
+</section>
+
+<section class="reservations" id="reservations">
+  <div class="section-inner">
+    <div class="reveal" style="max-width:600px;">
+      <span class="eyebrow">Reservations</span>
+      <h2 class="section-title">Save yourself a seat.</h2>
+      <p class="section-sub">Fill this in and it opens WhatsApp with your details ready to send — no account needed.</p>
+    </div>
+    <form class="checkout-form reveal" style="max-width:520px;" action="{{ url_for('reservations') }}" method="post">
+      <div class="form-field">
+        <label for="res-name">Full name</label>
+        <input type="text" id="res-name" name="name" required placeholder="e.g. Emem Umoh">
+      </div>
+      <div class="form-field">
+        <label for="res-phone">Phone number</label>
+        <input type="tel" id="res-phone" name="phone" required placeholder="080X XXX XXXX">
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+        <div class="form-field">
+          <label for="res-date">Date</label>
+          <input type="date" id="res-date" name="date" required>
+        </div>
+        <div class="form-field">
+          <label for="res-time">Time</label>
+          <input type="time" id="res-time" name="time" required>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="res-guests">Number of guests</label>
+        <input type="number" id="res-guests" name="guests" min="1" max="20" required placeholder="e.g. 4">
+      </div>
+      <button type="submit" class="pay-btn">Request Table on WhatsApp</button>
+    </form>
+  </div>
+</section>
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="eyebrow">What Regulars Say</span>
+      <h2 class="section-title" style="margin:0 auto;">You'll want to come back.</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"The ginger lemongrass tea has become my Monday morning ritual. It's the one thing that gets me through the week."</p>
+        <div class="t-who"><div class="t-avatar" style="background:var(--amber);">C</div><div><h5>Chidinma A.</h5><span>Regular since 2022</span></div></div>
+      </div>
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"I bring my laptop, order the signature latte, and get three hours of peace and free wifi. Best study spot in Uyo, hands down."</p>
+        <div class="t-who"><div class="t-avatar" style="background:var(--sage);">E</div><div><h5>Emem U.</h5><span>UNIUYO Student</span></div></div>
+      </div>
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"They remember I take my chai with extra spice, no sugar. Small thing, but it's why I never go anywhere else."</p>
+        <div class="t-who"><div class="t-avatar" style="background:var(--espresso);">O</div><div><h5>Ola T.</h5><span>Regular since 2023</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <div class="reveal" style="max-width:600px; margin:0 auto; text-align:center;">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title" style="margin:0 auto;">Quick answers.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>Do you deliver?</summary>
+        <p>Not yet through the site directly — order through our WhatsApp and we'll arrange delivery nearby, or pick up in-store.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Can I reserve a table?</summary>
+        <p>Yes — use the reservation form above, or message us on WhatsApp with your date, time, and party size.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Do you make custom cakes?</summary>
+        <p>We take custom cake orders with a bit of notice — reach out on WhatsApp with what you have in mind.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What payment methods are accepted?</summary>
+        <p>Card and bank transfer online at checkout (via Paystack), or cash and transfer in-store.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="section-inner">
+    <span class="eyebrow">Come Say Hi</span>
+    <h2 class="section-title">We'll have the kettle on.</h2>
+    <div class="visit-grid">
+      <div class="visit-card reveal">
+        <h3>Opening Hours</h3>
+        {% for day, time in business.hours.items() %}
+        <div class="visit-row"><span>{{ day }}</span><span>{{ time }}</span></div>
+        {% endfor %}
+      </div>
+      <div class="visit-card visit-contact reveal">
+        <h3>Find Us</h3>
+        <p>
+          📍 {{ business.address }}<br>
+          📞 <a href="tel:{{ business.phone }}">{{ business.phone_display }}</a><br>
+          💬 <a href="https://wa.me/{{ business.phone.lstrip('+') }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </p>
+        <div class="map-note">🗺️ On Oron Road, directly opposite Winners Chapel.</div>
+      </div>
+    </div>
+    <div class="map-embed reveal">
+      <iframe
+        src="https://www.google.com/maps?q={{ business.address | urlencode }}&output=embed"
+        width="100%" height="320" style="border:0; border-radius:20px;"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="VMAX Tea And Coffee Shop location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>First cup on us when you sign up for the loyalty card.</h2>
+  <a href="https://wa.me/{{ business.phone.lstrip('+') }}" target="_blank" rel="noopener" class="btn btn-primary" style="background:var(--espresso);">Message Us on WhatsApp</a>
+</div>
+
+{% include '_footer.html' %}
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

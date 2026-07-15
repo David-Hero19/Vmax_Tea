@@ -1,0 +1,23 @@
+<header>
+  <nav>
+    <a href="{{ url_for('home') }}" class="logo">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="23" fill="#C9852B"/>
+        <path d="M14 20h16a2 2 0 012 2v6a8 8 0 01-8 8h-4a8 8 0 01-8-8v-6a2 2 0 012-2z" fill="#FBF2E4"/>
+        <path d="M32 22h2a4 4 0 010 8h-2" stroke="#2B1810" stroke-width="2" fill="none"/>
+        <path d="M18 14c0 2-2 2-2 4M24 14c0 2-2 2-2 4M30 14c0 2-2 2-2 4" stroke="#2B1810" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      VMAX
+    </a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}#about">Our Story</a></li>
+      <li><a href="{{ url_for('home') }}#menu">Menu</a></li>
+      <li><a href="{{ url_for('home') }}#gallery">Gallery</a></li>
+      <li><a href="{{ url_for('home') }}#reservations">Book a Table</a></li>
+      <li><a href="{{ url_for('home') }}#visit">Visit Us</a></li>
+    </ul>
+    <a href="{{ url_for('cart_view') }}" class="cart-link">🛒 Cart <span class="cart-badge" id="cart-badge">{{ cart_count }}</span></a>
+    <a href="https://wa.me/{{ business.phone.lstrip('+') }}" target="_blank" rel="noopener" class="nav-cta">WhatsApp</a>
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+  </nav>
+</header>

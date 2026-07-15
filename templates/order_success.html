@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — VMAX Tea & Coffee Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+{% include '_header.html' %}
+
+<div class="order-status">
+  <div class="icon">✅</div>
+  <h1>Your order is confirmed!</h1>
+  <p>Thanks for your order — a receipt has been sent to {{ paid_email }}. Show your order reference when you arrive, or we'll have it ready if you're picking up.</p>
+  <div class="order-ref">Order Ref: {{ reference }}</div>
+
+  <div class="receipt">
+    {% for line in lines %}
+    <div class="receipt-line">
+      <span>{{ line.item.name }} × {{ line.quantity }}</span>
+      <span>₦{{ "{:,}".format(line.line_total) }}</span>
+    </div>
+    {% endfor %}
+    <div class="receipt-line" style="border-top:2px solid var(--espresso); margin-top:6px; padding-top:14px;">
+      <span>Total Paid</span>
+      <span>₦{{ "{:,}".format(total) }}</span>
+    </div>
+  </div>
+
+  <p>Questions about your order? <a href="https://wa.me/{{ business.phone.lstrip('+') }}" style="color:var(--amber); font-weight:800;">Message us on WhatsApp</a> and mention your order reference.</p>
+  <a href="{{ url_for('home') }}" class="btn btn-secondary" style="margin-top:20px;">Back to Home</a>
+</div>
+
+{% include '_footer.html' %}
+
+</body>
+</html>

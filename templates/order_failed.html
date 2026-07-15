@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Not Completed — VMAX Tea & Coffee Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+{% include '_header.html' %}
+
+<div class="order-status">
+  <div class="icon">⚠️</div>
+  <h1>Payment wasn't completed</h1>
+  <p>Your card wasn't charged. This can happen if the payment was cancelled or declined. Your cart is still saved, so you can try again.</p>
+  <div class="order-ref">Ref: {{ reference }}</div>
+  <a href="{{ url_for('checkout') }}" class="btn btn-primary">Try Again</a>
+  <a href="https://wa.me/{{ business.phone.lstrip('+') }}" class="btn btn-secondary" style="margin-top:12px;">Order via WhatsApp Instead</a>
+</div>
+
+{% include '_footer.html' %}
+
+</body>
+</html>

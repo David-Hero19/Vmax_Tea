@@ -1,0 +1,27 @@
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">VMAX Tea & Coffee</div>
+      <p>Uyo's cozy corner for tea, coffee, and good company.</p>
+      <!-- PLACEHOLDER: social handles below are examples, not confirmed with the owner. -->
+      <div class="social-links">
+        <a href="https://instagram.com/vmaxtea365" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <a href="https://facebook.com/vmaxtea365" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+        <a href="https://tiktok.com/@vmaxtea365" target="_blank" rel="noopener" aria-label="TikTok">TikTok</a>
+        <a href="https://wa.me/{{ business.phone.lstrip('+') }}" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="{{ url_for('home') }}#about">Our Story</a></li>
+      <li><a href="{{ url_for('home') }}#menu">Menu</a></li>
+      <li><a href="{{ url_for('home') }}#gallery">Gallery</a></li>
+      <li><a href="{{ url_for('home') }}#reservations">Reservations</a></li>
+      <li><a href="{{ url_for('home') }}#faq">FAQ</a></li>
+      <li><a href="{{ url_for('home') }}#visit">Visit Us</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 VMAX Tea & Coffee Shop. All rights reserved. · <a href="#" style="text-decoration:underline;">Privacy Policy</a></span>
+    <span>{{ business.address.split(",")[0] }}, Oron Road, Uyo</span>
+  </div>
+</footer>

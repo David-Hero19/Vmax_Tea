@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — VMAX Tea & Coffee Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+{% include '_header.html' %}
+
+<div class="shop-page">
+  <h1>Checkout</h1>
+  <p class="shop-sub">You'll pay securely on Paystack's page — we never see or store your card details.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="cart-lines">
+    {% for line in lines %}
+    <div class="cart-line">
+      <div>
+        <h4>{{ line.item.name }} <span style="font-weight:600; color:var(--espresso-soft);">× {{ line.quantity }}</span></h4>
+      </div>
+      <div class="cl-line-total">₦{{ "{:,}".format(line.line_total) }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="cart-total-row">
+    <span>Total to Pay</span>
+    <span>₦{{ "{:,}".format(total) }}</span>
+  </div>
+
+  <form class="checkout-form" action="{{ url_for('checkout') }}" method="post">
+    <div class="form-field">
+      <label for="name">Full name</label>
+      <input type="text" id="name" name="name" required placeholder="e.g. Emem Umoh">
+    </div>
+    <div class="form-field">
+      <label for="email">Email (your receipt goes here)</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+    </div>
+    <div class="form-field">
+      <label for="phone">Phone number</label>
+      <input type="tel" id="phone" name="phone" required placeholder="080X XXX XXXX">
+    </div>
+    <button type="submit" class="pay-btn">Pay ₦{{ "{:,}".format(total) }} with Paystack</button>
+  </form>
+</div>
+
+{% include '_footer.html' %}
+
+</body>
+</html>
